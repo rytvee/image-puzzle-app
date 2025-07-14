@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drag and Drop Puzzle Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🧩 Image Puzzle Game</h1>
+
+  <!-- Selection for game mode -->
+  <label for="modeSelect">Choose Mode:</label>
+  <select id="modeSelect">
+    <option value="timer">Countdown Timer</option>
+    <option value="moves">Move Tracker</option>
+  </select>
+
+  <button onclick="startGame()">Start Game</button>
+
+  <div id="puzzle-board"></div>
+  <p id="status"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
