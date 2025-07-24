@@ -12,4 +12,4 @@ A simpe browser-based image puzzle game built with using HTML5 Canvas and JavaSc
 
 Play directly from your browser:
 
-https://rytvee.github.io/image-puzzle/
+https://rytvee.github.io/image-puzzle-app/
