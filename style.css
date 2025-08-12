@@ -1,24 +1,70 @@
+:root {
+  --tile-size: 100px;
+  --board-size: 300px;
+}
+
 body {
   font-family: Arial, sans-serif;
   text-align: center;
   background: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+#modeSelect {
+  padding: 10px;
+  font-size: 16px;
+  height: 42px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  height: 42px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 
 #puzzle-board {
-  width: 300px;
-  height: 300px;
-  display: flex;
-  flex-wrap: wrap;
+  width: var(--board-size);
+  height: var(--board-size);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   margin: 20px auto;
   border: 2px solid #222;
 }
 
 .piece {
-  width: 100px;
-  height: 100px;
-  box-sizing: border-box;
+  width: var(--tile-size);
+  height: var(--tile-size);
+  background-size: var(--board-size) var(--board-size);
   border: 1px solid #ccc;
-  background-size: 300px 300px;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
   cursor: grab;
 }
 
@@ -26,4 +72,40 @@ body {
   font-size: 1.2em;
   margin-top: 10px;
   color: green;
+}
+
+/* Tablet */
+@media (max-width: 767px) {
+  :root {
+    --tile-size: 80px;
+    --board-size: 240px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  :root {
+    --tile-size: 60px;
+    --board-size: 180px;
+  }
+
+  h1 {
+    font-size: 1.2em;
+  }
+
+  #modeSelect, button {
+    width: 90%;
+    max-width: 300px;
+    margin: 8px auto;
+    display: block;
+    font-size: 14px;
+  }
+
+  #status {
+    font-size: 1em;
+  }
 }
