@@ -19,7 +19,7 @@ Play directly from your browser:
 - ✅ complete in time to win
 
 ## 🖥️ Gameplay
-
+![App Demo](images/demo.gif) 
 
 ## 📦 Installation
 ```
