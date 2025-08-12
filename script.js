@@ -2,7 +2,6 @@ const board = document.getElementById("puzzle-board");
 const statusText = document.getElementById("status");
 const modeSelect = document.getElementById("modeSelect");
 
-// 🔁 Array of puzzle image URLs (must be square & same size)
 const imageList = [
   "images/image-1.png",
   "images/image-2.png",
@@ -19,7 +18,6 @@ let gameOver = false;
 const maxMoves = 20;
 
 function startGame() {
-  // Reset state
   clearInterval(timer);
   board.innerHTML = "";
   statusText.textContent = "";
@@ -27,12 +25,14 @@ function startGame() {
   timeLeft = 60;
   gameOver = false;
 
-  const imageURL = imageList[currentImageIndex]; // use current image
+  const imageURL = imageList[currentImageIndex];
   pieces = [];
 
+  const tileSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--tile-size'));
+
   for (let i = 0; i < 9; i++) {
-    const x = (i % 3) * -100;
-    const y = Math.floor(i / 3) * -100;
+    const x = (i % 3) * -tileSize;
+    const y = Math.floor(i / 3) * -tileSize;
 
     const piece = document.createElement("div");
     piece.classList.add("piece");
@@ -50,9 +50,11 @@ function startGame() {
     board.appendChild(piece);
   });
 
-  const mode = modeSelect.value;
-  if (mode === "timer") startCountdown();
-  else updateMoveCount();
+  if (modeSelect.value === "timer") {
+    startCountdown();
+  } else {
+    updateMoveCount();
+  }
 }
 
 function shuffleArray(arr) {
@@ -65,7 +67,7 @@ function addDragEvents(piece) {
   piece.addEventListener("drop", dropPiece);
 }
 
-function dragStart(e) {
+function dragStart() {
   if (gameOver) return;
   draggedPiece = this;
 }
@@ -74,7 +76,7 @@ function dragOver(e) {
   e.preventDefault();
 }
 
-function dropPiece(e) {
+function dropPiece() {
   if (gameOver || !draggedPiece || this === draggedPiece) return;
 
   const draggedIndex = draggedPiece.dataset.currentIndex;
@@ -88,7 +90,6 @@ function dropPiece(e) {
   if (modeSelect.value === "moves") {
     moveCount++;
     updateMoveCount();
-
     if (moveCount >= maxMoves) {
       gameOver = true;
       statusText.textContent = "❌ Max moves reached! Game Over.";
@@ -109,10 +110,7 @@ function checkWin() {
     clearInterval(timer);
     gameOver = true;
     statusText.textContent = "🎉 Puzzle Solved!";
-
-    setTimeout(() => {
-      loadNextPuzzle();
-    }, 1000); // wait 1 second before loading next puzzle
+    setTimeout(() => loadNextPuzzle(), 1000);
   }
 }
 
@@ -128,7 +126,6 @@ function loadNextPuzzle() {
 
 function startCountdown() {
   statusText.textContent = `Time Left: ${timeLeft}s`;
-
   timer = setInterval(() => {
     timeLeft--;
     statusText.textContent = `Time Left: ${timeLeft}s`;
