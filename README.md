@@ -18,7 +18,7 @@ Play directly from your browser:
 - Arrange images correctly
 - Complete in time to win
 
-## 🖥️ Gameplay
+## Gameplay
 ![App Demo](images/demo.gif) 
 
 ## Installation
